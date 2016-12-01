@@ -1,7 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const WebpackBrowserPlugin = require('webpack-browser-plugin');
 
 const HOST  = 'http://localhost';
 const PORT  = 8080;
@@ -20,7 +19,7 @@ module.exports = {
     index: [
       'webpack-hot-middleware/client?path=' + URL + '__webpack_hmr',
       'webpack/hot/only-dev-server',
-      path.resolve(_PATH, 'main'),
+      path.resolve(_PATH, 'main')
     ]
   },
   output: {
@@ -49,6 +48,7 @@ module.exports = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
-    new webpack.EvalSourceMapDevToolPlugin()
+    new webpack.EvalSourceMapDevToolPlugin(),
+    new WebpackBrowserPlugin()
   ]
 };
